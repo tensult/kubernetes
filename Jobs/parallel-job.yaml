@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallel-job
+  generateName: kube-job-
+# namespace: prod
+spec:
+  completions: 5
+  parallelism: 2
+  schedule: "*/30 * * * *"
+  ttlSecondsAfterFinished: 1
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["echo", "Kubernetes Job"]
+      restartPolicy: Never

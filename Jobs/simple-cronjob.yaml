@@ -1,0 +1,14 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: simple-cron
+# namespace: prod
+spec:
+  schedule: "*/1 * * * *"   #It's to run cronjob for every 1 minute 
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: helloworld
+            image: docker image name
